@@ -18,6 +18,9 @@
             <input type="text" name="price" id="price" value="{{ old('price') }}">
         </div>
         <button type="submit">Salvar</button>
-        <a href="{{ route('plans.index') }}">Voltar</a>
+        <th>.</th>
+        <a href="{{ route('plans.index') }}">Voltar lista de Planos</a>
+        <th>.</th>
+        <a href="{{ route('home.menu') }}">Voltar menu principal</a>
     </form>
 @endsection
