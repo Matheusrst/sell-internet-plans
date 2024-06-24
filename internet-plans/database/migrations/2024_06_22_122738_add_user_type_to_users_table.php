@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * migratio de usuario
      */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('user_type')->default('customer'); // 'admin' or 'customer'
+            $table->string('user_type')->default('customer');
         });
     }
 
