@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
+    /**
+     * model dos planos
+     */
     use HasFactory;
 
     protected $fillable = [

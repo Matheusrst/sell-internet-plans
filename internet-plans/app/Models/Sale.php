@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
+    /**
+     * model de vendas
+     *
+     * @var array
+     */
     protected $fillable = [
         'user_id', 
         'plan_id',
