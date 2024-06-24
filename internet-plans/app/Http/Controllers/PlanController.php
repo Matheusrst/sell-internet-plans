@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
+    /**
+     * index da paggina de planos
+     *
+     * @return void
+     */
     public function index()
     {
         $plans = Plan::all();
@@ -16,11 +21,22 @@ class PlanController extends Controller
         return view('plans.index', compact('plans'));
     }
 
+    /**
+     * redirecionamento para a view de criação de produtos
+     *
+     * @return void
+     */
     public function create()
     {
         return view('plans.create');
     }
 
+    /**
+     * função de criação de produtos
+     *
+     * @param Request $request
+     * @return void
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -34,6 +50,12 @@ class PlanController extends Controller
         return redirect()->route('plans.index');
     }
 
+    /**
+     * detalhes do plano para o  admin
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function show($id)
     {
         $plan = Plan::findOrFail($id);
@@ -43,11 +65,24 @@ class PlanController extends Controller
         return view('plans.show', compact('plan'));
     }
 
+    /**
+     * redirecionamento para a view de edição de plano
+     *
+     * @param Plan $plan
+     * @return void
+     */
     public function edit(Plan $plan)
     {
         return view('plans.edit', compact('plan'));
     }
 
+    /**
+     * função de edição de plano
+     *
+     * @param Request $request
+     * @param Plan $plan
+     * @return void
+     */
     public function update(Request $request, Plan $plan)
     {
         $validated = $request->validate([
@@ -61,6 +96,12 @@ class PlanController extends Controller
         return redirect()->route('plans.index');
     }
 
+    /**
+     * função de exclusão de plano
+     *
+     * @param Plan $plan
+     * @return void
+     */
     public function destroy(Plan $plan)
     {
         $plan->delete();

@@ -8,12 +8,25 @@ use App\Models\Plan;
 
 class SaleController extends Controller
 {
+    /**
+     * redirecionamento para view de compra
+     *
+     * @param [type] $planId
+     * @return void
+     */
     public function create($planId)
     {
         $plan = Plan::findOrFail($planId);
         return view('sales.create', compact('plan'));
     }
 
+    /**
+     * função para a compra de planos
+     *
+     * @param Request $request
+     * @param [type] $planId
+     * @return void
+     */
     public function store(Request $request, $planId)
     {
         if (!auth()->check()) {
