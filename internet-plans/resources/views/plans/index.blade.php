@@ -12,6 +12,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit">Excluir</button>
+                    <th>.</th>
                     <a href="{{ route('home.menu', $plan->id) }}" class="btn btn-primary">Voltar</a>
                 </form>
             </li>
