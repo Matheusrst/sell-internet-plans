@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SaleController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MaintenanceController;
 
 Auth::routes();
 
@@ -27,6 +29,21 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/plans/{plan}', [PlanController::class, 'update'])->name('plans.update');
     //rotas de exclusão de plano
     Route::delete('/plans/{plan}', [PlanController::class, 'destroy'])->name('plans.destroy');
+    
+    //rotas de manutenção
+    Route::get('/maintenances', [MaintenanceController::class, 'index'])->name('maintenances.index');
+    //rotas para criar manutenção
+    Route::get('/maintenances/create', [MaintenanceController::class, 'create'])->name('maintenances.create');
+    //rotas para salvar manutenção
+    Route::post('/maintenances', [MaintenanceController::class, 'store'])->name('maintenances.store');
+    //rotas para o menu de manutenção
+    Route::get('/maintenances/{maintenance}', [MaintenanceController::class, 'show'])->name('maintenances.show');
+    //rotas para editar manutenções
+    Route::get('/maintenances/{maintenance}/edit', [MaintenanceController::class, 'edit'])->name('maintenances.edit');
+    //rotas para atualizar manutenções
+    Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update'])->name('maintenances.update');
+    //rotas para deletar manutenções
+    Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'destroy'])->name('maintenances.destroy');
 });
 
 //rotas de planos gerais
@@ -47,9 +64,5 @@ Route::get('/', function () {
     return redirect('/menu');
 })->name('home.menu');
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
