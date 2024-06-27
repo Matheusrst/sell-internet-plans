@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Maintenance;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class MaintenanceController extends Controller
 {
     public function index()
     {
-        $maintenances = Maintenance::with('user')->get();
+        $maintenances = Maintenance::all();
         return view('maintenances.index', compact('maintenances'));
     }
 
@@ -31,19 +32,14 @@ class MaintenanceController extends Controller
 
         Maintenance::create($request->all());
 
-        return redirect()->route('maintenances.index')->with('success', 'Manutenção agendada com sucesso!');
-    }
-
-    public function show($id)
-    {
-        $maintenance = Maintenance::with('user')->findOrFail($id);
-        return view('maintenances.show', compact('maintenance'));
+        return redirect()->route('maintenances.index')->with('success', 'Manutenção agendada com sucesso.');
     }
 
     public function edit($id)
     {
         $maintenance = Maintenance::findOrFail($id);
         $customers = User::where('user_type', 'customer')->get();
+
         return view('maintenances.edit', compact('maintenance', 'customers'));
     }
 
@@ -59,7 +55,7 @@ class MaintenanceController extends Controller
         $maintenance = Maintenance::findOrFail($id);
         $maintenance->update($request->all());
 
-        return redirect()->route('maintenances.index')->with('success', 'Manutenção atualizada com sucesso!');
+        return redirect()->route('maintenances.index')->with('success', 'Manutenção atualizada com sucesso.');
     }
 
     public function destroy($id)
@@ -67,6 +63,14 @@ class MaintenanceController extends Controller
         $maintenance = Maintenance::findOrFail($id);
         $maintenance->delete();
 
-        return redirect()->route('maintenances.index')->with('success', 'Manutenção excluída com sucesso!');
+        return redirect()->route('maintenances.index')->with('success', 'Manutenção excluída com sucesso.');
+    }
+
+    public function customerMaintenances()
+    {
+        $user = Auth::user();
+        $maintenances = Maintenance::where('user_id', $user->id)->get();
+
+        return view('maintenances.customer_maintenances', compact('maintenances'));
     }
 }

@@ -56,6 +56,8 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/plans/{plan}/sell', [SaleController::class, 'create'])->name('sales.create');
     //rotas de confirmação de compra
     Route::post('/plans/{plan}/sell', [SaleController::class, 'store'])->name('sales.store');
+    //rotas para ver agendamentos
+    Route::get('/my-maintenance', [MaintenanceController::class, 'customerMaintenances'])->name('maintenances.customer');
 });
 
 
