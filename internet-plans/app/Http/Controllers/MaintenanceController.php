@@ -35,6 +35,12 @@ class MaintenanceController extends Controller
         return redirect()->route('maintenances.index')->with('success', 'Manutenção agendada com sucesso.');
     }
 
+    public function show($id)
+    {
+        $maintenance = Maintenance::with('user')->findOrFail($id);
+        return view('maintenances.show', compact('maintenance'));
+    }
+
     public function edit($id)
     {
         $maintenance = Maintenance::findOrFail($id);
