@@ -15,6 +15,7 @@
                     @elseif (auth()->user()->user_type == 'customer')
                         <a href="{{ route('plans.index') }}" class="btn btn-primary mb-3">Ver Planos</a>
                         <a href="{{ route('maintenances.customer') }}" class="btn btn-primary mb-3">Minhas Manutenções</a>
+                        <a href="{{ route('plans.purchased') }}" class="btn btn-primary mb-3">Meus Planos Comprados</a>
                     @endif
                 </div>
             </div>

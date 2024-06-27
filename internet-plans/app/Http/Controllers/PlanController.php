@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlanController extends Controller
 {
@@ -94,6 +95,19 @@ class PlanController extends Controller
         $plan->update($validated);
 
         return redirect()->route('plans.index');
+    }
+
+    /**
+     * função para visualizar planos comprados
+     *
+     * @return void
+     */
+    public function purchasedPlans()
+    {
+        $user = Auth::user();
+        $plans = $user->plans()->get();
+
+        return view('plans.purchased_plans', compact('plans'));
     }
 
     /**
