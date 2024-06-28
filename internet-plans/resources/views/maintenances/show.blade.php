@@ -14,6 +14,7 @@
                     <p><strong>Agendada para:</strong> {{ $maintenance->scheduled_at }}</p>
                 </div>
             </div>
+            <a href="{{ route('maintenances.index') }}" class="btn btn-primary">Voltar</a>
         </div>
     </div>
 </div>

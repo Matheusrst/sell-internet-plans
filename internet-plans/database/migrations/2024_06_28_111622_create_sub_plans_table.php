@@ -7,16 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * migration da criação de planos
+     * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('sub_plans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('plan_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('base_price', 8, 2);
-            $table->string('base_speed');
+            $table->decimal('price', 8, 2);
+            $table->string('speed');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plans');
+        Schema::dropIfExists('sub_plans');
     }
 };

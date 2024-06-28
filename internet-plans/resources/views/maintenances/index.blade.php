@@ -43,6 +43,7 @@
                         </tbody>
                     </table>
                 </div>
+                <a href="{{ route('home.menu') }}" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </div>

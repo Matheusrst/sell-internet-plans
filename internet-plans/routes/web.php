@@ -5,6 +5,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\SubPlanController;
 
 Auth::routes();
 
@@ -30,6 +31,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //rotas de exclusão de plano
     Route::delete('/plans/{plan}', [PlanController::class, 'destroy'])->name('plans.destroy');
     
+    //rotas de sub-plano
+    Route::prefix('plans/{plan}')->group(function () {
+        //rota para cirar um sub-plano
+        Route::get('subplans/create', [SubPlanController::class, 'create'])->name('subplans.create');
+        //rota para visualizar os sub-planos
+        Route::post('subplans', [SubPlanController::class, 'store'])->name('subplans.store');
+        //rota para editar os sub-planos
+        Route::get('subplans/{subplan}/edit', [SubPlanController::class, 'edit'])->name('subplans.edit');
+        //rota para atualizar os sub-planos
+        Route::put('subplans/{subplan}', [SubPlanController::class, 'update'])->name('subplans.update');
+        //rota para deletar os sub-planos
+        Route::delete('subplans/{subplan}', [SubPlanController::class, 'destroy'])->name('subplans.destroy');
+    });
+
     //rotas de manutenção
     Route::get('/maintenances', [MaintenanceController::class, 'index'])->name('maintenances.index');
     //rotas para criar manutenção

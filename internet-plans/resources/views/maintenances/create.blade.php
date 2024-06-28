@@ -39,6 +39,7 @@
                         <button type="submit" class="btn btn-primary">Agendar</button>
                     </form>
                 </div>
+                <a href="{{ route('maintenances.index') }}" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </div>

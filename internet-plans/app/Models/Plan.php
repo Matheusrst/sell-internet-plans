@@ -15,11 +15,17 @@ class Plan extends Model
     protected $fillable = [
         'name',
         'description',
-        'price',
+        'base_price', 
+        'base_speed'
     ];
 
     public function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public function subPlans()
+    {
+        return $this->hasMany(SubPlan::class);
     }
 }

@@ -40,15 +40,16 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string',
+            'base_price' => 'required|numeric',
+            'base_speed' => 'required|string|max:255'
         ]);
 
-        $plan = Plan::create($validated);
+        Plan::create($request->all());
 
-        return redirect()->route('plans.index');
+        return redirect()->route('plans.index')->with('success', 'Plano criado com sucesso.');
     }
 
     /**
@@ -72,8 +73,9 @@ class PlanController extends Controller
      * @param Plan $plan
      * @return void
      */
-    public function edit(Plan $plan)
+    public function edit($id)
     {
+        $plan = Plan::findOrFail($id);
         return view('plans.edit', compact('plan'));
     }
 
@@ -84,17 +86,13 @@ class PlanController extends Controller
      * @param Plan $plan
      * @return void
      */
-    public function update(Request $request, Plan $plan)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'description' => 'sometimes|required|string',
-            'price' => 'sometimes|required|numeric|min:0',
-        ]);
-
-        $plan->update($validated);
-
-        return redirect()->route('plans.index');
+        $plan = Plan::findOrFail($id);
+        
+        $plan->update($request->only(['name', 'description', 'base_price', 'base_speed']));
+        
+        return redirect()->route('plans.show', $plan->id)->with('success', 'Plano atualizado com sucesso!');
     }
 
     /**
