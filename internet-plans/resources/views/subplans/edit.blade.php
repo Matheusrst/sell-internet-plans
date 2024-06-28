@@ -25,5 +25,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
     </form>
+    <a href="{{ route('plans.index') }}" class="btn btn-primary">Voltar</a>
 </div>
 @endsection

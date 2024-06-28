@@ -24,5 +24,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Adicionar Sub-Plano</button>
     </form>
+    <a href="{{ route('plans.index') }}" class="btn btn-primary">Voltar</a>
 </div>
 @endsection

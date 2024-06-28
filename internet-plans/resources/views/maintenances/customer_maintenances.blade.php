@@ -34,7 +34,7 @@
                         </table>
                     @endif
                 </div>
-                <a href="{{ route('maintenances.index') }}" class="btn btn-primary">Voltar</a>
+                <a href="{{ route('home.menu') }}" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </div>

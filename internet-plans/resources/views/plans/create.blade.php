@@ -24,6 +24,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Criar Plano</button>
     </form>
-    <a href="{{ route('plans.index', $plan->id) }}" class="btn btn-primary">Voltar</a>
+    <a href="{{ route('plans.index') }}" class="btn btn-primary">Voltar</a>
 </div>
 @endsection
