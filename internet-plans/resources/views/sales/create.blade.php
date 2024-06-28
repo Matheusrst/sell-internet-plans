@@ -11,7 +11,9 @@
                 <div class="card-body">
                     <h3>{{ $plan->name }}</h3>
                     <p>{{ $plan->description }}</p>
-                    <p>Preço: R$ {{ $plan->price }}</p>
+                    <p>Preço Base: R$ {{ $plan->base_price }}</p>
+                    <p>Velocidade Base: {{ $plan->base_speed }}</p>
+                    
                     <form method="POST" action="{{ route('sales.store', $plan->id) }}">
                         @csrf
                         <button type="submit" class="btn btn-primary">Confirmar Compra</button>

@@ -75,6 +75,12 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/my-maintenance', [MaintenanceController::class, 'customerMaintenances'])->name('maintenances.customer');
     //rotas para visualizar planos comprados
     Route::get('/my-plans', [PlanController::class, 'purchasedPlans'])->name('plans.purchased');
+    // Rotas para visualizar detalhes dos sub-planos
+    Route::get('/subplans/{subplan}', [SubPlanController::class, 'show'])->name('subplans.show');
+    // Rota para comprar um sub-plano
+    Route::get('/plans/{plan}/buy', 'SaleController@create')->name('plans.buy');
+    // Rota para comprar sub-planos
+    Route::post('/subplans/{subplan}/buy', 'SaleController@buySubPlan')->name('subplans.buy');
 });
 
 

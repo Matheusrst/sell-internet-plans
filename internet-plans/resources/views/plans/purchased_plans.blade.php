@@ -19,6 +19,7 @@
                                     <th>Nome</th>
                                     <th>Descrição</th>
                                     <th>Preço</th>
+                                    <th>Velocidade</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,7 +28,8 @@
                                     <td>{{ $plan->id }}</td>
                                     <td>{{ $plan->name }}</td>
                                     <td>{{ $plan->description }}</td>
-                                    <td>{{ $plan->price }}</td>
+                                    <td>{{ $plan->base_price }}</td>
+                                    <td>{{ $plan->base_speed }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
