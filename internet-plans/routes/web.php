@@ -6,6 +6,7 @@ use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\SubPlanController;
+use App\Http\Controllers\UserController;
 
 Auth::routes();
 
@@ -59,6 +60,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update'])->name('maintenances.update');
     //rotas para deletar manutenções
     Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'destroy'])->name('maintenances.destroy');
+
+    // Rotas para administração de planos comprados
+    Route::get('/admin/customers', [UserController::class, 'index'])->name('admin.customers.index');
+    //rotas para ver de planos comprados
+    Route::get('/admin/customers/{customer}/purchased-plans', [SaleController::class, 'customerPurchasedPlans'])->name('admin.customer.purchased.plans');
+    //rota para editar planos comprados
+    Route::get('/admin/purchased-plans/{sale}/edit', [SaleController::class, 'editPurchasedPlan'])->name('admin.edit.purchased.plan');
+    //roa para salvar ediçao do plano comprado
+    Route::put('/admin/purchased-plans/{sale}', [SaleController::class, 'updatePurchasedPlan'])->name('admin.update.purchased.plan');
 });
 
 //rotas de planos gerais
