@@ -50,10 +50,11 @@ class SubPlanController extends Controller
         return redirect()->route('plans.show', $planId)->with('success', 'Sub-plano atualizado com sucesso!');
     }
 
-    public function destroy(Plan $plan, SubPlan $subPlan)
+    public function destroy($planId, $subPlanId)
     {
+        $subPlan = SubPlan::findOrFail($subPlanId);
         $subPlan->delete();
 
-        return redirect()->route('plans.show', $plan->id)->with('success', 'Sub-plano excluído com sucesso.');
+        return redirect()->route('plans.show', $planId)->with('success', 'Sub-plano excluído com sucesso!');
     }
 }
