@@ -29,6 +29,11 @@
                     <td>{{ $sale->speed }}</td>
                     <td>
                         <a href="{{ route('admin.edit.purchased.plan', $sale->id) }}" class="btn btn-warning">Editar</a>
+                        <form action="{{ route('sales.destroy', $sale->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar este plano?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Cancelar</button>
+                        </form> 
                     </td>
                 </tr>
                 @endforeach

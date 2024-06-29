@@ -75,6 +75,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
 //rotas do menu de planos gerais
 Route::get('/plans/{plan}', [PlanController::class, 'show'])->name('plans.show');
+//rota para deletar um plano comprado
+Route::delete('/sales/{sale}', [SaleController::class, 'destroy'])->name('sales.destroy')->middleware('auth');
 
 Route::middleware(['auth', 'customer'])->group(function () {
     //rotas de crompras de planos

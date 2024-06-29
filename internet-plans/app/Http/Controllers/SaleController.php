@@ -123,6 +123,20 @@ class SaleController extends Controller
         $sale->update($request->only(['price', 'speed']));
 
         return redirect()->route('admin.customer.purchased.plans', $sale->user_id)
-                         ->with('success', 'Detalhes do plano comprados atualizados com sucesso!');
+        ->with('success', 'Detalhes do plano comprados atualizados com sucesso!');
+    }
+
+    /**
+     * Função para cancelar um plano comprado
+     *
+     * @param int $saleId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($saleId)
+    {
+        $sale = Sale::findOrFail($saleId);
+        $sale->delete();
+
+        return redirect()->back()->with('success', 'Plano cancelado com sucesso!');
     }
 }
