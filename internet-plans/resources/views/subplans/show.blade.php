@@ -12,8 +12,10 @@
                     <p>{{ $subPlan->description }}</p>
                     <p>Preço: R$ {{ $subPlan->price }}</p>
                     <p>Velocidade: {{ $subPlan->speed }}</p>
-
-                    <a href="{{ route('subplans.buy', $subPlan->id) }}" class="btn btn-primary">Comprar Sub-Plano</a>
+                    <form action="{{ route('subplans.purchase', $subPlan->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Comprar Sub-Plano</button>
+                    </form>
                     <a href="{{ route('plans.index') }}" class="btn btn-primary">Voltar</a>
                 </div>
             </div>

@@ -15,7 +15,7 @@
 
                     <!-- Se houver sub-planos, exibir detalhes -->
                     @if ($plan->subPlans->isNotEmpty())
-                        <h3>Opções de planos disponiveis!</h3>
+                        <h3>Sub-Planos Disponíveis</h3>
                         <ul>
                             @foreach ($plan->subPlans as $subPlan)
                                 <li>
@@ -24,12 +24,16 @@
                                     <p>Preço: R$ {{ $subPlan->price }}</p>
                                     <p>Velocidade: {{ $subPlan->speed }}</p>
                                     <a href="{{ route('subplans.show', $subPlan->id) }}" class="btn btn-primary">Ver Detalhes</a>
+                                    <form action="{{ route('subplans.purchase', $subPlan->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Comprar Sub-Plano</button>
+                                    </form>
                                 </li>
                             @endforeach
                         </ul>
                     @endif
-                    <a href="{{ route('sales.create', $plan->id) }}" class="btn btn-primary">Comprar</a>
-                    <a href="{{ route('plans.index') }}" class="btn btn-primary">Voltar</a>
+                    <a href="{{ route('sales.create', $plan->id) }}" class="btn btn-primary">Comprar Plano Base</a>
+                    <a href="{{ route('plans.index') }}" class="btn btn-secondary">Voltar</a>
                 </div>
             </div>
         </div>
