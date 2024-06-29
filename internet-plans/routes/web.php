@@ -68,17 +68,19 @@ Route::get('/plans/{plan}', [PlanController::class, 'show'])->name('plans.show')
 
 Route::middleware(['auth', 'customer'])->group(function () {
     //rotas de crompras de planos
-    Route::get('/plans/{plan}/sell', [SaleController::class, 'create'])->name('sales.create');
+    Route::get('/plans/{plan}/sales/create', [SaleController::class, 'create'])->name('sales.create');
     //rotas de confirmação de compra
-    Route::post('/plans/{plan}/sell', [SaleController::class, 'store'])->name('sales.store');
+    Route::post('/plans/{plan}/sales', [SaleController::class, 'store'])->name('sales.store');
     //rotas para ver agendamentos
     Route::get('/my-maintenance', [MaintenanceController::class, 'customerMaintenances'])->name('maintenances.customer');
-    //rotas para visualizar planos comprados
-    Route::get('/my-plans', [PlanController::class, 'purchasedPlans'])->name('plans.purchased');
     // Rotas para visualizar detalhes dos sub-planos
     Route::get('/subplans/{subplan}', [SubPlanController::class, 'show'])->name('subplans.show');
     // Rota para comprar um sub-plano
-    Route::post('/subplans/{subPlan}/purchase', [SaleController::class, 'purchaseSubPlan'])->name('subplans.purchase');
+    Route::get('/subplans/{subPlan}/purchase', [SaleController::class, 'createSubPlan'])->name('subplans.purchase');
+    // Rota para salvar a comprar de um sub-plano
+    Route::post('/subplans/{subPlan}/purchase', [SaleController::class, 'storeSubPlan'])->name('subplans.purchase.store');
+    //rotas para vizualizar compras
+    Route::get('/purchased-plans', [SaleController::class, 'purchasedPlans'])->name('plans.purchased');
 });
 
 

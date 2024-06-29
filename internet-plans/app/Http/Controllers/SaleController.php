@@ -9,9 +9,9 @@ use App\Models\SubPlan;
 
 class SaleController extends Controller
 {
-    public function create(Plan $planId)
+
+    public function create(Plan $plan)
     {
-        $plan = Plan::findOrFail($planId);
         return view('sales.create', compact('plan'));
     }
 
@@ -26,12 +26,20 @@ class SaleController extends Controller
         Sale::create([
             'user_id' => auth()->id(),
             'plan_id' => $plan->id,
+            'price' => $plan->base_price,
+            'speed' => $plan->base_speed,
         ]);
 
         return redirect()->route('plans.index')->with('success', 'Plano comprado com sucesso!');
     }
 
-    public function purchaseSubPlan(Request $request, $subPlanId)
+    public function createSubPlan($subPlanId)
+    {
+        $subPlan = SubPlan::findOrFail($subPlanId);
+        return view('subplans.purchase', compact('subPlan'));
+    }
+
+    public function storeSubPlan(Request $request, $subPlanId)
     {
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'Você precisa estar logado para comprar um sub-plano.');
@@ -41,12 +49,18 @@ class SaleController extends Controller
 
         Sale::create([
             'user_id' => auth()->id(),
-            'plan_id' => $subPlan->plan_id, // Assume que sub-plano está relacionado ao plano
             'sub_plan_id' => $subPlan->id,
             'price' => $subPlan->price,
             'speed' => $subPlan->speed,
         ]);
 
         return redirect()->route('plans.index')->with('success', 'Sub-Plano comprado com sucesso!');
+    }
+
+    public function purchasedPlans()
+    {
+        $userId = auth()->id();
+        $sales = Sale::where('user_id', $userId)->with('plan', 'subPlan')->get();
+        return view('plans.purchased_plans', compact('sales'));
     }
 }

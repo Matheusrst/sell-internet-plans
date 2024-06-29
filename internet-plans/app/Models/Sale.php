@@ -2,27 +2,28 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    /**
-     * model de vendas
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'user_id', 
-        'plan_id',
-    ];
+    use HasFactory;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $fillable = [
+        'user_id',
+        'plan_id',
+        'sub_plan_id',
+        'price',
+        'speed'
+    ];
 
     public function plan()
     {
-        return $this->belongsTo(Plan::class);
+        return $this->belongsTo(Plan::class, 'plan_id');
+    }
+
+    public function subPlan()
+    {
+        return $this->belongsTo(SubPlan::class, 'sub_plan_id');
     }
 }

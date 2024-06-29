@@ -13,7 +13,6 @@
                     <p>Preço Base: R$ {{ $plan->base_price }}</p>
                     <p>Velocidade Base: {{ $plan->base_speed }}</p>
 
-                    <!-- Se houver sub-planos, exibir detalhes -->
                     @if ($plan->subPlans->isNotEmpty())
                         <h3>Sub-Planos Disponíveis</h3>
                         <ul>

@@ -1,4 +1,4 @@
-<!-- resources/views/subplan_details.blade.php -->
+<!-- resources/views/subplans/purchase.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -12,7 +12,7 @@
                     <p>{{ $subPlan->description }}</p>
                     <p>Preço: R$ {{ $subPlan->price }}</p>
                     <p>Velocidade: {{ $subPlan->speed }}</p>
-                    <form action="{{ route('subplans.purchase', $subPlan->id) }}" method="POST">
+                    <form action="{{ route('subplans.purchase.store', $subPlan->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-primary">Comprar Sub-Plano</button>
                     </form>

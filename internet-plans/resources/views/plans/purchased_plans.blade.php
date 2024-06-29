@@ -9,7 +9,7 @@
                 <div class="card-header">Meus Planos Comprados</div>
 
                 <div class="card-body">
-                    @if($plans->isEmpty())
+                    @if($sales->isEmpty())
                         <p>Você não comprou nenhum plano.</p>
                     @else
                         <table class="table">
@@ -23,13 +23,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($plans as $plan)
+                                @foreach ($sales as $sale)
                                 <tr>
-                                    <td>{{ $plan->id }}</td>
-                                    <td>{{ $plan->name }}</td>
-                                    <td>{{ $plan->description }}</td>
-                                    <td>{{ $plan->base_price }}</td>
-                                    <td>{{ $plan->base_speed }}</td>
+                                    <td>{{ $sale->id }}</td>
+                                    <td>{{ $sale->plan ? $sale->plan->name : $sale->subPlan->name }}</td>
+                                    <td>{{ $sale->plan ? $sale->plan->description : $sale->subPlan->description }}</td>
+                                    <td>{{ $sale->price }}</td>
+                                    <td>{{ $sale->speed }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
