@@ -13,6 +13,13 @@ class SubPlanController extends Controller
         return view('subplans.create', compact('plan'));
     }
 
+    public function show($subplanId)
+    {
+    $subPlan = SubPlan::findOrFail($subplanId);
+
+    return view('subplans.show', compact('subPlan'));
+    }
+
     public function store(Request $request, Plan $plan)
     {
         $request->validate([

@@ -23,6 +23,7 @@
                                     <p>{{ $subPlan->description }}</p>
                                     <p>Preço: R$ {{ $subPlan->price }}</p>
                                     <p>Velocidade: {{ $subPlan->speed }}</p>
+                                    <a href="{{ route('subplans.show', $subPlan->id) }}" class="btn btn-primary">Ver Detalhes</a>
                                 </li>
                             @endforeach
                         </ul>
