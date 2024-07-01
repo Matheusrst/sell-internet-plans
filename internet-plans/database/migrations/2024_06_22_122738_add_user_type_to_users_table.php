@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * migratio de usuario
+     * adição para a migratio de usuario
      */
     public function up(): void
     {
