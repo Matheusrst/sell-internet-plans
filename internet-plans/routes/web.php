@@ -15,6 +15,13 @@ Route::get('/menu', function () {
     return view('menu');
 })->middleware('auth');
 
+//rota do menu principal
+Route::get('/', function () {
+    return redirect('/menu');
+})->name('home.menu');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 //rotas autenficadas do admin
 Route::middleware(['auth', 'admin'])->group(function () {
     //rotas do plano
@@ -34,16 +41,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
     
     //rotas de sub-plano
     Route::prefix('plans/{plan}')->group(function () {
-        //rota para cirar um sub-plano
-        Route::get('subplans/create', [SubPlanController::class, 'create'])->name('subplans.create');
-        //rota para visualizar os sub-planos
-        Route::post('subplans', [SubPlanController::class, 'store'])->name('subplans.store');
-        //rota para editar os sub-planos
-        Route::get('subplans/{subplan}/edit', [SubPlanController::class, 'edit'])->name('subplans.edit');
-        //rota para atualizar os sub-planos
-        Route::put('subplans/{subplan}', [SubPlanController::class, 'update'])->name('subplans.update');
-        //rota para deletar os sub-planos
-        Route::delete('subplans/{subplan}', [SubPlanController::class, 'destroy'])->name('subplans.destroy');
+    //rota para cirar um sub-plano
+    Route::get('subplans/create', [SubPlanController::class, 'create'])->name('subplans.create');
+    //rota para visualizar os sub-planos
+    Route::post('subplans', [SubPlanController::class, 'store'])->name('subplans.store');
+    //rota para editar os sub-planos
+    Route::get('subplans/{subplan}/edit', [SubPlanController::class, 'edit'])->name('subplans.edit');
+    //rota para atualizar os sub-planos
+    Route::put('subplans/{subplan}', [SubPlanController::class, 'update'])->name('subplans.update');
+    //rota para deletar os sub-planos
+    Route::delete('subplans/{subplan}', [SubPlanController::class, 'destroy'])->name('subplans.destroy');
     });
 
     //rotas de manutenção
@@ -71,13 +78,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/purchased-plans/{sale}', [SaleController::class, 'updatePurchasedPlan'])->name('admin.update.purchased.plan');
 });
 
-//rotas de planos gerais
-Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
-//rotas do menu de planos gerais
-Route::get('/plans/{plan}', [PlanController::class, 'show'])->name('plans.show');
-//rota para deletar um plano comprado
-Route::delete('/sales/{sale}', [SaleController::class, 'destroy'])->name('sales.destroy')->middleware('auth');
-
 Route::middleware(['auth', 'customer'])->group(function () {
     //rotas de crompras de planos
     Route::get('/plans/{plan}/sales/create', [SaleController::class, 'create'])->name('sales.create');
@@ -95,11 +95,12 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/purchased-plans', [SaleController::class, 'purchasedPlans'])->name('plans.purchased');
 });
 
-
-//rota do menu principal
-Route::get('/', function () {
-    return redirect('/menu');
-})->name('home.menu');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/**
+ * rotas gerais
+ */
+//rotas de planos gerais
+Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
+//rotas do menu de planos gerais
+Route::get('/plans/{plan}', [PlanController::class, 'show'])->name('plans.show');
+//rota para deletar um plano comprado
+Route::delete('/sales/{sale}', [SaleController::class, 'destroy'])->name('sales.destroy')->middleware('auth');
