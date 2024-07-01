@@ -1,4 +1,4 @@
-<!-- resources/views/admin/customers/index.blade.php -->
+<!-- view de usuarios cadastrados para o admin -->
 @extends('layouts.app')
 
 @section('content')

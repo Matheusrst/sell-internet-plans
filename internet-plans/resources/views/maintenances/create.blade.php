@@ -1,4 +1,4 @@
-<!-- resources/views/maintenances/create.blade.php -->
+<!-- formulario de criacão de manutenções -->
 @extends('layouts.app')
 
 @section('content')

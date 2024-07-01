@@ -1,4 +1,4 @@
-<!-- resources/views/menu.blade.php -->
+<!-- menu principal para admin e usuarios -->
 @extends('layouts.app')
 
 @section('content')

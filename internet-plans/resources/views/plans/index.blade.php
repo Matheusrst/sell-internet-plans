@@ -1,3 +1,4 @@
+<!-- view de listagem de planos cadastrados -->
 @extends('layouts.app')
 
 @section('content')

@@ -1,3 +1,4 @@
+<!-- formulario de criação de planos -->
 @extends('layouts.app')
 
 @section('content')

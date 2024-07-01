@@ -1,3 +1,4 @@
+<!-- view de confirmação de login para usuarios -->
 @extends('layouts.app')
 
 @section('content')

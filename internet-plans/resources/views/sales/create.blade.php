@@ -1,4 +1,4 @@
-<!-- resources/views/sales/create.blade.php -->
+<!-- view de confirmação de compra -->
 @extends('layouts.app')
 
 @section('content')

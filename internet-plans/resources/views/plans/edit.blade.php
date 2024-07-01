@@ -1,4 +1,4 @@
-<!-- resources/views/plans/edit.blade.php -->
+<!-- formulario de edição de planos -->
 @extends('layouts.app')
 
 @section('content')

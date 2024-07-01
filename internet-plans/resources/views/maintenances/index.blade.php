@@ -1,4 +1,4 @@
-<!-- resources/views/maintenances/index.blade.php -->
+<!-- menu de listagem de manutenções -->
 @extends('layouts.app')
 
 @section('content')

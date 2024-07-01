@@ -1,4 +1,4 @@
-<!-- resources/views/maintenances/show.blade.php -->
+<!-- manu de informações de manutenções agendadas -->
 @extends('layouts.app')
 
 @section('content')

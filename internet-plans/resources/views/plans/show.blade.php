@@ -1,3 +1,4 @@
+<!-- menu de informações de planos criados -->
 @extends('layouts.app')
 
 @section('content')

@@ -1,4 +1,4 @@
-<!-- resources/views/plans/purchased_plans.blade.php -->
+<!-- view de listagem de planos comprados -->
 @extends('layouts.app')
 
 @section('content')

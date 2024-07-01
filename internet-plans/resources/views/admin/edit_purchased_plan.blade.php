@@ -1,4 +1,4 @@
-<!-- resources/views/admin/edit_purchased_plan.blade.php -->
+<!-- view de edição de planos comprados -->
 @extends('layouts.app')
 
 @section('content')

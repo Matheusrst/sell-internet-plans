@@ -1,4 +1,4 @@
-<!-- resources/views/maintenances/customer_maintenances.blade.php -->
+<!-- view para manutenções agendadas -->
 @extends('layouts.app')
 
 @section('content')

@@ -1,4 +1,4 @@
-<!-- resources/views/customer_plans.blade.php -->
+<!-- listagem de planos disponiveis -->
 @extends('layouts.app')
 
 @section('content')
