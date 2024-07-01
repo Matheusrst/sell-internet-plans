@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * model dos planos
+ */
 class Plan extends Model
 {
-    /**
-     * model dos planos
-     */
     use HasFactory;
 
     protected $fillable = [
