@@ -13,6 +13,7 @@
                         <a href="{{ route('plans.index') }}" class="btn btn-primary mb-3">Gerenciar Planos</a>
                         <a href="{{ route('maintenances.index') }}" class="btn btn-primary mb-3">Gerenciar Manutenções</a>
                         <a href="{{ route('admin.customers.index') }}" class="btn btn-primary mb-3">Ver Planos Comprados</a>
+                        <a href="{{ route('admin.register') }}" class="btn btn-primary mb-3">Registrar Novo Administrador</a>
                     @elseif (auth()->user()->user_type == 'customer')
                         <a href="{{ route('plans.index') }}" class="btn btn-primary mb-3">Ver Planos</a>
                         <a href="{{ route('maintenances.customer') }}" class="btn btn-primary mb-3">Minhas Manutenções</a>

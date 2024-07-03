@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\SubPlanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminRegisterController;
 
 Auth::routes();
 
@@ -24,6 +25,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //rotas autenficadas do admin
 Route::middleware(['auth', 'admin'])->group(function () {
+    //rota para registrar novos admin
+    Route::get('/admin/register', [AdminRegisterController::class, 'showRegistrationForm'])->name('admin.register');
+    //rotas para salvar novos registros
+    Route::post('/admin/register', [AdminRegisterController::class, 'register']);
     //rotas do plano
     Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
     //rotas de criação de plano

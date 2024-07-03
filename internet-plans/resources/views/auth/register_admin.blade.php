@@ -1,4 +1,4 @@
-<!-- resources/views/auth/register.blade.php -->
+<!-- rota para registro de admins -->
 
 @extends('layouts.app')
 
@@ -7,10 +7,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Registrar Administrador') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('admin.register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -71,6 +71,7 @@
                             </div>
                         </div>
                     </form>
+                    <a href="{{ route('home.menu') }}" class="btn btn-primary">Voltar</a>
                 </div>
             </div>
         </div>

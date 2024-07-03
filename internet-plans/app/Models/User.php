@@ -30,6 +30,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $attributes = [
+        'user_type' => 'customer',
+    ];
+
     public function isAdmin()
     {
         return $this->user_type === 'admin';
